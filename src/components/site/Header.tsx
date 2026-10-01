@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
-import { orderLink } from "@/lib/products";
+import { WhatsAppLink } from "@/components/site/WhatsAppLink";
 
 const NAV = [
   { label: "Collection", href: "#collection" },
