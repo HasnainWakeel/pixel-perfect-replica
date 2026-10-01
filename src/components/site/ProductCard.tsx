@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { MessageCircle } from "lucide-react";
+import { WhatsAppLink } from "@/components/site/WhatsAppLink";
 import {
   SIZES,
   formatPrice,
-  orderLink,
   type Product,
   type Size,
 } from "@/lib/products";
