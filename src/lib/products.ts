@@ -5,7 +5,7 @@ import whiteMusk from "@/assets/attar-white-musk.jpg";
 import mizyanBlend from "@/assets/attar-mizyan-blend.jpg";
 
 /** WhatsApp business number used for every order link. */
-export const WHATSAPP_NUMBER = "923001234567";
+export const WHATSAPP_NUMBER = "923173570107";
 
 /** Available bottle sizes offered on every attar. */
 export const SIZES = ["3ml", "6ml", "12ml"] as const;
