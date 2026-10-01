@@ -67,15 +67,10 @@ export function Header() {
               {item.label}
             </a>
           ))}
-          <a
-            href={orderLink()}
-            target="_blank"
-            rel="noreferrer"
-            className="surface-gold mt-2 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium"
-          >
+          <WhatsAppLink className="surface-gold mt-2 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium">
             <MessageCircle className="size-4" />
             WhatsApp Us
-          </a>
+          </WhatsAppLink>
         </nav>
       )}
     </header>

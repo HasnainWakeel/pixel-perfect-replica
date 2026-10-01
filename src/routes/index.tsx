@@ -3,7 +3,8 @@ import { Droplets, Wind, Truck, Gift, MessageCircle, Sparkles } from "lucide-rea
 import { Header } from "@/components/site/Header";
 import { ProductCard } from "@/components/site/ProductCard";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
-import { PRODUCTS, orderLink } from "@/lib/products";
+import { WhatsAppLink } from "@/components/site/WhatsAppLink";
+import { PRODUCTS } from "@/lib/products";
 import heroImage from "@/assets/hero-attar.jpg";
 
 export const Route = createFileRoute("/")({
