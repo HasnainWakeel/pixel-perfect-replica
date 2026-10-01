@@ -93,15 +93,10 @@ function Index() {
             >
               Explore Collection
             </a>
-            <a
-              href={orderLink()}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-gold/50 px-7 py-3.5 text-sm font-medium tracking-wide text-gold transition-colors hover:bg-accent"
-            >
+            <WhatsAppLink className="inline-flex items-center gap-2 rounded-full border border-gold/50 px-7 py-3.5 text-sm font-medium tracking-wide text-gold transition-colors hover:bg-accent">
               <MessageCircle className="size-4" />
               Order via WhatsApp
-            </a>
+            </WhatsAppLink>
           </div>
         </div>
       </section>
