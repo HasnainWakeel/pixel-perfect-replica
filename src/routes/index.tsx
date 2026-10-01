@@ -189,15 +189,10 @@ function Index() {
             <p className="mt-4 text-sm text-muted-foreground">
               Message us and we&apos;ll guide you to your scent.
             </p>
-            <a
-              href={orderLink()}
-              target="_blank"
-              rel="noreferrer"
-              className="surface-gold mt-5 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
-            >
+            <WhatsAppLink className="surface-gold mt-5 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold">
               <MessageCircle className="size-4" />
               WhatsApp Us
-            </a>
+            </WhatsAppLink>
           </div>
         </div>
 
