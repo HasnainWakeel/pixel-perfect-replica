@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, ShoppingBag } from "lucide-react";
 import { WhatsAppLink } from "@/components/site/WhatsAppLink";
+import { useCart, unitPrice } from "@/lib/cart";
 import {
   SIZES,
   formatPrice,
@@ -8,9 +9,10 @@ import {
   type Size,
 } from "@/lib/products";
 
-/** Catalog card: image zoom on hover, notes, price, size pills, WhatsApp order. */
+/** Catalog card: image zoom on hover, notes, size-based price, add to cart. */
 export function ProductCard({ product }: { product: Product }) {
   const [size, setSize] = useState<Size>("6ml");
+  const { add, setOpen } = useCart();
 
   return (
     <article className="shadow-luxe group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-gold/45">
@@ -40,7 +42,7 @@ export function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
 
-        <p className="font-display text-xl text-gold">{formatPrice(product.price)}</p>
+        <p className="font-display text-xl text-gold">{formatPrice(unitPrice(product.id, size))}</p>
 
         <div>
           <p className="mb-2 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground">
@@ -65,14 +67,27 @@ export function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
 
-        <WhatsAppLink
-          productName={product.name}
-          size={size}
-          className="surface-gold mt-auto inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold tracking-wide transition-transform hover:-translate-y-0.5"
-        >
-          <MessageCircle className="size-4" />
-          Order on WhatsApp
-        </WhatsAppLink>
+        <div className="mt-auto flex flex-col gap-2">
+          <button
+            type="button"
+            onClick={() => {
+              add(product.id, size);
+              setOpen(true);
+            }}
+            className="surface-gold inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold tracking-wide transition-transform hover:-translate-y-0.5"
+          >
+            <ShoppingBag className="size-4" />
+            Add to Cart · {formatPrice(unitPrice(product.id, size))}
+          </button>
+          <WhatsAppLink
+            productName={product.name}
+            size={size}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-gold/40 px-5 py-2.5 text-sm text-gold transition-colors hover:bg-accent"
+          >
+            <MessageCircle className="size-4" />
+            Order on WhatsApp
+          </WhatsAppLink>
+        </div>
       </div>
     </article>
   );
