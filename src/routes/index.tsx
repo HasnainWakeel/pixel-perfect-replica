@@ -5,6 +5,8 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { WhatsAppLink } from "@/components/site/WhatsAppLink";
 import { PRODUCTS } from "@/lib/products";
+import { CartProvider } from "@/lib/cart";
+import { CartDrawer } from "@/components/site/CartDrawer";
 import heroImage from "@/assets/hero-attar.jpg";
 
 export const Route = createFileRoute("/")({
@@ -54,8 +56,10 @@ const FEATURES = [
 
 function Index() {
   return (
+    <CartProvider>
     <div id="top" className="min-h-screen bg-background">
       <Header />
+      <CartDrawer />
 
       {/* HERO */}
       <section className="relative overflow-hidden pb-20 pt-32 sm:pb-28 sm:pt-40">
@@ -203,5 +207,6 @@ function Index() {
 
       <FloatingWhatsApp />
     </div>
+    </CartProvider>
   );
 }

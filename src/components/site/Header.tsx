@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X, MessageCircle, ShoppingBag } from "lucide-react";
 import { WhatsAppLink } from "@/components/site/WhatsAppLink";
+import { useCart } from "@/lib/cart";
 
 const NAV = [
   { label: "Collection", href: "#collection" },
@@ -9,9 +10,10 @@ const NAV = [
   { label: "Contact", href: "#contact" },
 ];
 
-/** Sticky glassmorphism header with brand lockup, nav and WhatsApp CTA. */
+/** Sticky glassmorphism header with brand lockup, nav, cart and WhatsApp CTA. */
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { count, setOpen: setCartOpen } = useCart();
 
   return (
     <header className="glass-panel fixed inset-x-0 top-0 z-50 border-b border-border">
@@ -44,6 +46,19 @@ export function Header() {
             <MessageCircle className="size-4" />
             WhatsApp Us
           </WhatsAppLink>
+          <button
+            type="button"
+            aria-label={`Open cart (${count} items)`}
+            onClick={() => setCartOpen(true)}
+            className="relative inline-flex size-10 items-center justify-center rounded-full border border-gold/40 text-gold hover:bg-accent"
+          >
+            <ShoppingBag className="size-5" />
+            {count > 0 && (
+              <span className="surface-gold absolute -right-1 -top-1 inline-flex min-w-5 items-center justify-center rounded-full px-1 text-[0.65rem] font-bold">
+                {count}
+              </span>
+            )}
+          </button>
           <button
             type="button"
             aria-label="Toggle menu"
