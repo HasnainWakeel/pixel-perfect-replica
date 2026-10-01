@@ -23,7 +23,7 @@ type Props = { open: boolean; onClose: () => void };
 
 export function CheckoutModal({ open, onClose }: Props) {
   const { items, subtotal, shipping, total, clear } = useCart();
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
   const [sending, setSending] = useState(false);
   const [failed, setFailed] = useState("");
   const [orderId, setOrderId] = useState<string | null>(null);
@@ -41,7 +41,7 @@ export function CheckoutModal({ open, onClose }: Props) {
     e.preventDefault();
     const parsed = schema.safeParse(Object.fromEntries(new FormData(e.currentTarget)));
     if (!parsed.success) {
-      const errs: Record<string, string> = {};
+      const errs: Partial<Record<string, string>> = {};
       parsed.error.issues.forEach((i) => (errs[String(i.path[0])] = i.message));
       setErrors(errs);
       return;
@@ -121,10 +121,10 @@ export function CheckoutModal({ open, onClose }: Props) {
         ) : (
           <form onSubmit={handleSubmit} noValidate className="space-y-4">
             <h2 className="font-display text-3xl text-cream">Checkout</h2>
-            <Field name="name" label="Full Name" error={errors.name} />
-            <Field name="phone" label="WhatsApp Phone" type="tel" placeholder="03XX XXXXXXX" error={errors.phone} />
-            <Field name="address" label="Delivery Address" error={errors.address} />
-            <Field name="city" label="City" error={errors.city} />
+            <Field name="name" label="Full Name" error={errors["name"]} />
+            <Field name="phone" label="WhatsApp Phone" type="tel" placeholder="03XX XXXXXXX" error={errors["phone"]} />
+            <Field name="address" label="Delivery Address" error={errors["address"]} />
+            <Field name="city" label="City" error={errors["city"]} />
             <label className="block">
               <span className="mb-1.5 block text-xs uppercase tracking-[0.18em] text-muted-foreground">Order Notes (optional)</span>
               <textarea name="notes" rows={2} maxLength={500} className="w-full rounded-lg border border-gold/30 bg-background px-4 py-2.5 text-cream outline-none focus:border-gold" />
