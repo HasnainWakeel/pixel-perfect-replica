@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { MessageCircle } from "lucide-react";
+import { WhatsAppLink } from "@/components/site/WhatsAppLink";
 import {
   SIZES,
   formatPrice,
-  orderLink,
   type Product,
   type Size,
 } from "@/lib/products";
@@ -65,15 +65,14 @@ export function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
 
-        <a
-          href={orderLink(product.name, size)}
-          target="_blank"
-          rel="noreferrer"
+        <WhatsAppLink
+          productName={product.name}
+          size={size}
           className="surface-gold mt-auto inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold tracking-wide transition-transform hover:-translate-y-0.5"
         >
           <MessageCircle className="size-4" />
           Order on WhatsApp
-        </a>
+        </WhatsAppLink>
       </div>
     </article>
   );

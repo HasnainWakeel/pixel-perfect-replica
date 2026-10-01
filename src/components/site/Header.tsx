@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
-import { orderLink } from "@/lib/products";
+import { WhatsAppLink } from "@/components/site/WhatsAppLink";
 
 const NAV = [
   { label: "Collection", href: "#collection" },
@@ -38,15 +38,12 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={orderLink()}
-            target="_blank"
-            rel="noreferrer"
+          <WhatsAppLink
             className="surface-gold hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-transform hover:-translate-y-0.5 sm:inline-flex"
           >
             <MessageCircle className="size-4" />
             WhatsApp Us
-          </a>
+          </WhatsAppLink>
           <button
             type="button"
             aria-label="Toggle menu"
@@ -70,15 +67,10 @@ export function Header() {
               {item.label}
             </a>
           ))}
-          <a
-            href={orderLink()}
-            target="_blank"
-            rel="noreferrer"
-            className="surface-gold mt-2 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium"
-          >
+          <WhatsAppLink className="surface-gold mt-2 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium">
             <MessageCircle className="size-4" />
             WhatsApp Us
-          </a>
+          </WhatsAppLink>
         </nav>
       )}
     </header>

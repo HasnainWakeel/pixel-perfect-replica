@@ -3,7 +3,8 @@ import { Droplets, Wind, Truck, Gift, MessageCircle, Sparkles } from "lucide-rea
 import { Header } from "@/components/site/Header";
 import { ProductCard } from "@/components/site/ProductCard";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
-import { PRODUCTS, orderLink } from "@/lib/products";
+import { WhatsAppLink } from "@/components/site/WhatsAppLink";
+import { PRODUCTS } from "@/lib/products";
 import heroImage from "@/assets/hero-attar.jpg";
 
 export const Route = createFileRoute("/")({
@@ -92,15 +93,10 @@ function Index() {
             >
               Explore Collection
             </a>
-            <a
-              href={orderLink()}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-gold/50 px-7 py-3.5 text-sm font-medium tracking-wide text-gold transition-colors hover:bg-accent"
-            >
+            <WhatsAppLink className="inline-flex items-center gap-2 rounded-full border border-gold/50 px-7 py-3.5 text-sm font-medium tracking-wide text-gold transition-colors hover:bg-accent">
               <MessageCircle className="size-4" />
               Order via WhatsApp
-            </a>
+            </WhatsAppLink>
           </div>
         </div>
       </section>
@@ -193,15 +189,10 @@ function Index() {
             <p className="mt-4 text-sm text-muted-foreground">
               Message us and we&apos;ll guide you to your scent.
             </p>
-            <a
-              href={orderLink()}
-              target="_blank"
-              rel="noreferrer"
-              className="surface-gold mt-5 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
-            >
+            <WhatsAppLink className="surface-gold mt-5 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold">
               <MessageCircle className="size-4" />
               WhatsApp Us
-            </a>
+            </WhatsAppLink>
           </div>
         </div>
 
