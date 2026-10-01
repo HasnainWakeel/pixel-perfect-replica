@@ -157,7 +157,7 @@ export function CheckoutModal({ open, onClose }: Props) {
   );
 }
 
-function Field({ name, label, error, type = "text", placeholder }: { name: string; label: string; error?: string; type?: string; placeholder?: string }) {
+function Field({ name, label, error, type = "text", placeholder }: { name: string; label: string; error?: string | undefined; type?: string; placeholder?: string }) {
   return (
     <label className="block">
       <span className="mb-1.5 block text-xs uppercase tracking-[0.18em] text-muted-foreground">{label}</span>
