@@ -63,27 +63,31 @@ export function CheckoutModal({ open, onClose }: Props) {
       if (WEB3FORMS_ACCESS_KEY.startsWith("YOUR_")) {
         console.warn("Web3Forms key not set — order not emailed:\n", message);
       } else {
+        // FormData = "simple" request: no CORS preflight (JSON triggers one that Web3Forms rejects).
+        const fields: Record<string, string> = {
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New Order #${id} - ${d.name} - ${total.toLocaleString("en-US")} PKR`,
+          from_name: "Dar-ul-Attar Orders",
+          to: ORDER_EMAIL,
+          "Order ID": `#${id}`,
+          "Customer Name": d.name,
+          "Phone": d.phone,
+          "Address": d.address,
+          "City": d.city,
+          "Items Ordered": lines,
+          "Subtotal": `${subtotal.toLocaleString("en-US")} PKR`,
+          "Shipping": shipping === 0 ? "FREE" : `${shipping} PKR`,
+          "Total": `${total.toLocaleString("en-US")} PKR`,
+          "Payment": "Cash on Delivery",
+          "Notes": d.notes || "-",
+          "Full Summary": message,
+        };
+        const body = new FormData();
+        Object.entries(fields).forEach(([k, v]) => body.append(k, v));
         const res = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({
-            access_key: WEB3FORMS_ACCESS_KEY,
-            subject: `New Order #${id} - ${d.name} - ${total.toLocaleString("en-US")} PKR`,
-            from_name: "Dar-ul-Attar Orders",
-            to: ORDER_EMAIL,
-            "Order ID": `#${id}`,
-            "Customer Name": d.name,
-            "Phone": d.phone,
-            "Address": d.address,
-            "City": d.city,
-            "Items Ordered": lines,
-            "Subtotal": `${subtotal.toLocaleString("en-US")} PKR`,
-            "Shipping": shipping === 0 ? "FREE" : `${shipping} PKR`,
-            "Total": `${total.toLocaleString("en-US")} PKR`,
-            "Payment": "Cash on Delivery",
-            "Notes": d.notes || "-",
-            "Full Summary": message,
-          }),
+          body,
+          signal: AbortSignal.timeout(20000),
         });
         const json = await res.json();
         if (!json.success) throw new Error(json.message);
