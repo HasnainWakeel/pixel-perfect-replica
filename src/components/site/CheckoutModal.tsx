@@ -8,7 +8,7 @@ import { PRODUCTS, WHATSAPP_NUMBER, formatPrice } from "@/lib/products";
  * Web3Forms access key (public by design). Create one at web3forms.com using
  * the store's inbox email — orders are delivered to that inbox.
  */
-const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+const WEB3FORMS_ACCESS_KEY = "017ca60b-937b-4e5a-b76a-617a82bd4d63";
 const ORDER_EMAIL = "dragonplayz445@gmail.com";
 
 const schema = z.object({
